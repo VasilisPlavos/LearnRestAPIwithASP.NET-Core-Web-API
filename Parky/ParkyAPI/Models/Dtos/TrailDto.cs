@@ -19,7 +19,6 @@ namespace ParkyAPI.Models.Dtos
         public DifficultyType Difficulty { get; set; }
 
         public DateTime Created { get; set; }
-        public DateTime Established { get; set; }
 
         [Required]
         public int NationalParkId { get; set; }
