@@ -30,7 +30,6 @@ namespace ParkyAPI.Repository
 
         public NationalPark GetNationalPark(int nationalParkId)
         {
-            NationalPark nationalPark = _db.NationalParks.Find(nationalParkId);
             return _db.NationalParks.FirstOrDefault(nationalPark => nationalPark.Id == nationalParkId);
         }
 
@@ -39,7 +38,6 @@ namespace ParkyAPI.Repository
             // this works also but we want them OrderByName
             // return _db.NationalParks.ToList();
             return _db.NationalParks.OrderBy(nationalPark => nationalPark.Name).ToList();
-
         }
 
         public bool NationalParkExists(string name)
