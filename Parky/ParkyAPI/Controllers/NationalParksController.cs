@@ -59,10 +59,19 @@ namespace ParkyAPI.Controllers
         public IActionResult GetNationalPark(int nationalParkId)
         {
             var parkObj = _npRepo.GetNationalPark(nationalParkId);
-            
             if (parkObj == null) { return NotFound(); }
 
-            var objDto = _mapper.Map<NationalParkDto>(parkObj);
+            // var objDto = _mapper.Map<NationalParkDto>(parkObj);
+            
+            var objDto = new NationalParkDto()
+            {
+                Created = parkObj.Created,
+                Id = parkObj.Id,
+                Name = parkObj.Name,
+                State = parkObj.State
+            };
+            // the implementation above is if we do not have automapper installed
+
             return Ok(objDto);
         }
 
