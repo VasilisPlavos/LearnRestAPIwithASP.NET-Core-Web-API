@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
@@ -35,6 +37,8 @@ namespace ParkyAPI
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddScoped<INationalParkRepository, NationalParkRepository>();
+            services.AddScoped<ITrailRepository, TrailRepository>();
+
             services.AddAutoMapper(typeof(ParkyMappings));
 
             services.AddSwaggerGen(options =>
@@ -43,8 +47,24 @@ namespace ParkyAPI
                     new Microsoft.OpenApi.Models.OpenApiInfo()
                     {
                         Title = "Parky API",
-                        Version = "1"
+                        Version = "1",
+                        Description ="Udemy Parky API",
+                        Contact = new Microsoft.OpenApi.Models.OpenApiContact()
+                        {
+                            Email = "vpwone@gmail.com",
+                            Name = "Vasilis Plavos",
+                            Url = new Uri("https://plavos.com")
+                        },
+                        License = new Microsoft.OpenApi.Models.OpenApiLicense()
+                        {
+                            Name = "MIT License",
+                            Url = new Uri("https://www.google.com/search?q=mit+license")
+                        }
                     });
+
+                var xmlCommentFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var cmdCommentsFullPath = Path.Combine(AppContext.BaseDirectory, xmlCommentFile);
+                options.IncludeXmlComments(cmdCommentsFullPath);
             });
 
             services.AddControllers();
