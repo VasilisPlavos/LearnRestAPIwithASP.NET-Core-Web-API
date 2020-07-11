@@ -31,12 +31,12 @@ namespace ParkyAPI.Repository
 
         public Trail GetTrail(int trailId)
         {
-            return _db.Trails.Include(c => c.NationalPark).FirstOrDefault(trail => trail.Id == trailId);
+            return _db.Trails.FirstOrDefault(trail => trail.Id == trailId);
         }
 
         public ICollection<Trail> GetTrails()
         {
-            return _db.Trails.Include(c => c.NationalPark).OrderBy(trail => trail.Name).ToList();
+            return _db.Trails.OrderBy(trail => trail.Name).ToList();
         }
 
         public bool TrailExists(string name)
