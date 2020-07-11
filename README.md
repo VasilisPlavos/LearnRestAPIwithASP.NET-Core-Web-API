@@ -9,6 +9,8 @@ Go to **Properties > Build > Errors and warnings > Suppress warnings > 1591**
 Or edit **ParkyAPI\ParkyAPI.csproj**
 
 ### Allow Any Cors [for Development]
+Source: https://stackoverflow.com/questions/44379560/how-to-enable-cors-in-asp-net-core-webapi
+
 On Startup.cs file use this code:
 
 1. This goes at the top
