@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ParkyAPI.Migrations
 {
-    public partial class AddAllToDb : Migration
+    public partial class SetupDb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

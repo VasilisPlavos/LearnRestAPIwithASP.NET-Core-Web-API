@@ -10,8 +10,8 @@ using ParkyAPI.Data;
 namespace ParkyAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200714215158_AddAllToDb")]
-    partial class AddAllToDb
+    [Migration("20200715065052_SetupDb")]
+    partial class SetupDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
