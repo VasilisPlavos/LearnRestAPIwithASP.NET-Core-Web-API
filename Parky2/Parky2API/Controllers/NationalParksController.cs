@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Parky2API.Data;
 using Parky2API.Models;
+using Parky2API.Models.Dtos;
 
 namespace Parky2API.Controllers
 {
@@ -21,11 +22,20 @@ namespace Parky2API.Controllers
             _db = db;
         }
 
+        private static NationalParkDto NationalParkDto(NationalPark nationalPark) => new NationalParkDto
+        {
+            Id = nationalPark.Id,
+            Name = nationalPark.Name,
+            State = nationalPark.State,
+            Created = nationalPark.Created,
+            Established = nationalPark.Established
+        };
+
         // GET: api/NationalParks
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<NationalPark>>> GetNationalParks()
+        public async Task<ActionResult<IEnumerable<NationalParkDto>>> GetNationalParks()
         {
-            return await _db.NationalParks.ToListAsync();
+            return await _db.NationalParks.Select(np => NationalParkDto(np)).ToListAsync();
         }
 
         // GET: api/NationalParks/5
