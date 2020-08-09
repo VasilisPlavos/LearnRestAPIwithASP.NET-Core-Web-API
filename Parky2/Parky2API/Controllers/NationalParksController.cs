@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -40,6 +41,7 @@ namespace Parky2API.Controllers
 
         // GET: api/NationalParks/5
         [HttpGet("{id}")]
+        [Authorize]
         public async Task<ActionResult<NationalPark>> GetNationalPark(int id)
         {
             var nationalPark = await _db.NationalParks.FindAsync(id);
